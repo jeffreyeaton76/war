@@ -10,7 +10,8 @@ body {
 header {
   height: 100px;
   width: 500px;
-  margin: 30px;
+  margin-top: 25px;
+  margin-left: 25px;
   font-family: 'VT323';
   font-size: 80px;
   color: white;
@@ -18,10 +19,10 @@ header {
 .intro {
   font-family: 'VT323';
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   height: 100px;
-  width: 500px;
-  margin: 30px;
+  width: 300px;
+  margin-left: 35px;
 }
 #game_container {
   height: 250px;
@@ -56,5 +57,4 @@ header {
   font-size: 30px;
   width: 70px;
   margin: auto;
-  text-decoration: underline;
 }
