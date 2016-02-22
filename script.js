@@ -1,4 +1,3 @@
-var cardValues = [];
 var player1 = [];
 var computer = [];
 var dealDiv = document.getElementById("deal");
@@ -31,13 +30,18 @@ var deck = {
     computer = this.cards;
   },
   compare: function() {
-    this.hand.push(player1.pop());
-    this.hand.push(computer.pop());
-    if (this.hand[0][0] > this.hand[1][0]){
-      console.log("Player wins");
+    if (player1.length > 0) {
+      deck.hand.push(player1.pop());
+      deck.hand.push(computer.pop());
+      if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]){
+        console.log("Player wins");
+      }
+      else {
+        console.log("computer wins");
+      }
     }
     else {
-      console.log("computer wins");
+      console.log("Game over");
     }
   }
 };
