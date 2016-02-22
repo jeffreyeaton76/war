@@ -1,0 +1,60 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*border: 1px solid black;*/
+}
+body {
+  background: #009900;
+}
+header {
+  height: 100px;
+  width: 500px;
+  margin: 30px;
+  font-family: 'VT323';
+  font-size: 80px;
+  color: white;
+}
+.intro {
+  font-family: 'VT323';
+  color: white;
+  font-size: 30px;
+  height: 100px;
+  width: 500px;
+  margin: 30px;
+}
+#game_container {
+  height: 250px;
+  width: 300px;
+  margin: auto;
+}
+.cards {
+  position: relative;
+  margin: auto;
+}
+#player {
+  margin: 20px;
+  height: 120px;
+  width: 80px;
+  background: red;
+  float: left;
+  margin-left: 30px;
+}
+#computer {
+  position: relative;
+  margin: 20px;
+  height: 120px;
+  width: 80px;
+  background: red;
+  float: left;
+  margin-left: 50px;
+}
+#deal {
+  position: relative;
+  font-family: 'VT323';
+  color: white;
+  font-size: 30px;
+  width: 70px;
+  margin: auto;
+  text-decoration: underline;
+}
