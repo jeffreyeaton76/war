@@ -6,6 +6,7 @@
 }
 body {
   background: #009900;
+  position: relative;
 }
 header {
   height: 100px;
@@ -17,44 +18,64 @@ header {
   color: white;
 }
 .intro {
+  position: relative;
   font-family: 'VT323';
   color: white;
   font-size: 20px;
-  height: 100px;
+  float: left;
+  height: 80px;
   width: 300px;
   margin-left: 35px;
 }
+p {
+  font-family: 'VT323';
+  color: white;
+  font-size: 25px;
+}
 #game_container {
-  height: 250px;
-  width: 300px;
+  position: relative;
+  height: 350px;
+  width: 350px;
   margin: auto;
+  margin-bottom: 80px;
+}
+img {
+  max-height: 100%;
+  max-width: 100%;
 }
 .cards {
   position: relative;
   margin: auto;
 }
 #player {
+  position:absolute;
   margin: 20px;
-  height: 120px;
-  width: 80px;
-  background: red;
+  height: 180px;
+  width: 124px;
   float: left;
   margin-left: 30px;
 }
 #computer {
-  position: relative;
+  position: absolute;
   margin: 20px;
-  height: 120px;
-  width: 80px;
-  background: red;
+  height: 180px;
+  width: 124px;
   float: left;
-  margin-left: 50px;
+  margin-left: 190px;
 }
 #deal {
-  position: relative;
+  position: absolute;
   font-family: 'VT323';
   color: white;
   font-size: 30px;
   width: 70px;
-  margin: auto;
+  height: 30px;
+  margin-top: 280px;
+  margin-left: 130px;
+}
+.score_container {
+  position: relative;
+  width: 300px;
+  bottom: 300px;
+  left: 30px;
 }

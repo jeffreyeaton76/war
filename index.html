@@ -8,11 +8,22 @@
 </head>
 <body>
   <header>THIS IS WAR!</header>
-  <p class="intro">You know the rules. Highest card wins. If the values tie I'll deal with it on Wednesday. Good luck!</p>
+  <p class="intro">Click DEAL to begin then click FLIP to see the cards. </p>
   <div id="game_container">
-    <div class="cards" id="player">Player</div>
-    <div class="cards" id="computer">Computer</div>
+    <div class="cards" id="player">
+      <img id="red_joker" src="cards/red_joker.png">
+      <p>Player</p>
+    </div>
+    <div class="cards" id="computer">
+      <img id="black_joker" src="cards/black_joker.png">
+      <p>Computer</p>
+    </div>
     <div id="deal">DEAL!</div>
+  </div>
+  <div class="score_container">
+    <p>Score</p>
+    <p>Player Score: <span id="player_score">0</span>
+    <p>Computer Score: <span id="computer_score">0</span>
   </div>
   <script type="text/javascript" src="script.js"></script>
 </body>

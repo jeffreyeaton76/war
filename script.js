@@ -1,6 +1,10 @@
 var player1 = [];
 var computer = [];
+var playerWins = 0;
+var computerWins = 0;
 var dealDiv = document.getElementById("deal");
+var playerScore = document.getElementById("player_score");
+var computerScore = document.getElementById("computer_score");
 
 var deck = {
   values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
@@ -25,7 +29,7 @@ var deck = {
       }
     return cards;
   },
-  deal: function(cards) {
+  deal: function() {
     player1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
     computer = this.cards;
   },
@@ -34,10 +38,14 @@ var deck = {
       deck.hand.push(player1.pop());
       deck.hand.push(computer.pop());
       if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]){
-        console.log("Player wins");
+        playerWins++;
+        playerScore.innerHTML = playerWins;
+        console.log("Player wins! Player score is " + playerWins);
       }
       else {
-        console.log("computer wins");
+        computerWins++;
+        computerScore.innerHTML = computerWins;
+        console.log("Computer wins! Computer score is " + computerWins);
       }
     }
     else {
