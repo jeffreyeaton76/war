@@ -8,15 +8,15 @@ var computerScore = document.getElementById("computer_score");
 
 var deck = {
   values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-  suits: ["Clubs", "Diamonds", "Hearts", "Spades"],
+  suits: ["clubs", "diamonds", "hearts", "spades"],
   cards: [],
   hand: [],
   build: function() {
     for (i = 0; i < this.values.length; i++){
-      this.cards.push([this.values[i], "Clubs"]);
-      this.cards.push([this.values[i], "Hearts"]);
-      this.cards.push([this.values[i], "Diamonds"]);
-      this.cards.push([this.values[i], "Spades"]);
+      this.cards.push([this.values[i], "clubs"]);
+      this.cards.push([this.values[i], "hearts"]);
+      this.cards.push([this.values[i], "diamonds"]);
+      this.cards.push([this.values[i], "spades"]);
     }
   },
   shuffle: function(cards) {
@@ -37,7 +37,9 @@ var deck = {
     if (player1.length > 0) {
       deck.hand.push(player1.pop());
       deck.hand.push(computer.pop());
-      if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]){
+      document.getElementById("playerCard").src="cards/" + deck.hand[deck.hand.length-1][0] + "_of_" + deck.hand[deck.hand.length-1][1] + ".png";
+      document.getElementById("computerCard").src="cards/" + deck.hand[deck.hand.length-2][0] + "_of_" + deck.hand[deck.hand.length-2][1] + ".png";
+      if (deck.hand[deck.hand.length-1][0] < deck.hand[deck.hand.length-2][0]){
         playerWins++;
         playerScore.innerHTML = playerWins;
         console.log("Player wins! Player score is " + playerWins);
@@ -56,5 +58,4 @@ var deck = {
 deck.build();
 deck.shuffle();
 deck.deal();
-// deck.compare();
 dealDiv.addEventListener("click", deck.compare);
