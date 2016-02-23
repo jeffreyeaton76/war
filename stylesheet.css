@@ -54,6 +54,7 @@ img {
   width: 124px;
   float: left;
   margin-left: 30px;
+  text-align: center;
 }
 #computer {
   position: absolute;
@@ -62,16 +63,19 @@ img {
   width: 124px;
   float: left;
   margin-left: 190px;
+  text-align: center;
 }
-#deal {
+#action {
   position: absolute;
   font-family: 'VT323';
   color: white;
   font-size: 30px;
-  width: 70px;
-  height: 30px;
+  width: 180px;
+  height: 40px;
   margin-top: 280px;
-  margin-left: 130px;
+  margin-left: 90px;
+  text-align: center;
+  border: 3px solid white;
 }
 .score_container {
   position: relative;

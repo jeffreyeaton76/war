@@ -8,22 +8,22 @@
 </head>
 <body>
   <header>THIS IS WAR!</header>
-  <p class="intro">Click DEAL to begin then click FLIP to see the cards. </p>
+  <p class="intro">Click DEAL to begin then click FLIP to see the cards. A tie means WAR and three points.</p>
   <div id="game_container">
     <div class="cards" id="player">
-      <img id="playerCard" src="cards/red_joker.png">
+      <img id="playerCard" src="cards/backside.png">
       <p>Player</p>
     </div>
     <div class="cards" id="computer">
-      <img id="computerCard" src="cards/black_joker.png">
+      <img id="computerCard" src="cards/backside.png">
       <p>Computer</p>
     </div>
-    <div id="deal">DEAL!</div>
+    <div id="action">DEAL!</div>
   </div>
   <div class="score_container">
     <p>Score</p>
-    <p>Player Score: <span id="player_score">0</span>
-    <p>Computer Score: <span id="computer_score">0</span>
+    <p>Your cards: <span id="player_score">26</span></p>
+    <p>Computer's cards: <span id="computer_score">26</span></p>
   </div>
   <script type="text/javascript" src="script.js"></script>
 </body>
