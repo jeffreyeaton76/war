@@ -1,10 +1,7 @@
 var player1 = [];
 var computer = [];
-var playerWins = 26;
-var computerWins = 26;
-var wasATie = false;
-var playerWon;
-var computerWon;
+var playerWon = false;
+var computerWon = false;
 var actionDiv = document.getElementById("action");
 var playerScore = document.getElementById("player_score");
 var computerScore = document.getElementById("computer_score");
@@ -39,62 +36,55 @@ var deck = {
     computer = this.cards;
   },
   deal: function() {
-    if (player1.length > 0) {
-      deck.hand.push(player1.pop());
-      deck.hand.push(computer.pop());
-      playerCard.src="cards/" + deck.hand[deck.hand.length-1][0] + "_of_" + deck.hand[deck.hand.length-1][1] + ".png";
-      computerCard.src="cards/" + deck.hand[deck.hand.length-2][0] + "_of_" + deck.hand[deck.hand.length-2][1] + ".png";
-      deck.compare();
-    }
+    actionDiv.style.height = "40px";
+    actionDiv.innerHTML = "FLIP!";
+    deck.hand.push(player1.pop());
+    deck.hand.push(computer.pop());
+    playerCard.src="cards/" + deck.hand[deck.hand.length-1][0] + "_of_" + deck.hand[deck.hand.length-1][1] + ".png";
+    computerCard.src="cards/" + deck.hand[deck.hand.length-2][0] + "_of_" + deck.hand[deck.hand.length-2][1] + ".png";
+    computerScore.innerHTML = computer.length;
+    playerScore.innerHTML = player1.length;
+    deck.compare();
   },
   compare: function() {
     if (deck.hand[deck.hand.length-1][0] == deck.hand[deck.hand.length-2][0]) {
       deck.tie();
       }
-    else if (deck.hand[deck.hand.length-1][0] < deck.hand[deck.hand.length-2][0]){
-      wasATie = false;
+    else if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]){
       playerWon = true;
       deck.score();
       }
-    else if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]) {
-      wasATie = false;
+    else if (deck.hand[deck.hand.length-1][0] < deck.hand[deck.hand.length-2][0]) {
       computerWon = true;
       deck.score();
       }
-    else {
+    else if (player1.length === 0 || computer.length === 0) {
       deck.gameOver();
     }
   },
   tie: function() {
+    actionDiv.style.height = "73px";
     actionDiv.innerHTML = "I DECLARE WAR!";
-    wasATie = true;
-    for (i = 0; i <= 3; i++) {
+    for (i = 0; i < 3; i++) {
       deck.hand.push(player1.pop());
       deck.hand.push(computer.pop());
     }
-    return wasATie;
+    computerScore.innerHTML = computer.length;
+    playerScore.innerHTML = player1.length;
   },
   score: function() {
-    if (playerWon === true && wasATie === true){
-      wasATie = false;
-      playerWon = false;
-      playerWins = playerWins - 6;
-      playerScore.innerHTML = player1.length;
-    }
-    else if (playerWon === true && wasATie === false){
-      playerWon = false;
-      playerWins = playerWins - 2;
-      playerScore.innerHTML = player1.length;
+    if (playerWon === true){
+      while (deck.hand.length > 0) {
+        player1.unshift(deck.hand.pop());
       }
-    else if (computerWon === true && wasATie === true){
-      wasATie = false;
-      computerWon = false;
-      computerWins = computerWins - 6;
-      computerScore.innerHTML = computer.length;
+      playerWon = false;
+      playerScore.innerHTML = player1.length;
     }
-    else if (computerWon === true && wasATie === false){
+    else if (computerWon === true){
+      while (deck.hand.length > 0) {
+        computer.unshift(deck.hand.pop());
+      }
       computerWon = false;
-      computerWins = computerWins - 2;
       computerScore.innerHTML = computer.length;
     }
   },
@@ -103,7 +93,7 @@ var deck = {
     actionDiv.addEventListener("click", deck.gameStart);
   },
   gameStart: function() {
-    actionDiv.innerHTML = "DEAL!";
+    actionDiv.innerHTML = "FLIP!";
     deck.build();
     deck.shuffle();
     deck.splitDeck();
