@@ -35,6 +35,7 @@ var war = {
     war.player1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
     war.computer = this.cards;
   },
+  // deals two cards and chooses image to display, the first line restores normal hieght in case it had been enlarged by the war.tie method; war.deal is triggered by a click event so I avoided using "this" here
   deal: function() {
     war.actionDiv.style.height = "40px";
     war.actionDiv.innerHTML = "FLIP!";
@@ -46,57 +47,58 @@ var war = {
     war.playerScore.innerHTML = war.player1.length;
     war.compare();
   },
+  // compares from the back of war.deck to avoid comparing the same two cards after a tie
   compare: function() {
-    if (war.hand[war.hand.length-1][0] == war.hand[war.hand.length-2][0]) {
-      war.tie();
+    if (this.hand[this.hand.length-1][0] == this.hand[this.hand.length-2][0]) {
+      this.tie();
       }
-    else if (war.hand[war.hand.length-1][0] > war.hand[war.hand.length-2][0]){
-      war.playerWon = true;
-      war.score();
+    else if (this.hand[this.hand.length-1][0] > this.hand[this.hand.length-2][0]){
+      this.playerWon = true;
+      this.score();
       }
-    else if (war.hand[war.hand.length-1][0] < war.hand[war.hand.length-2][0]) {
-      war.computerWon = true;
-      war.score();
+    else if (this.hand[this.hand.length-1][0] < this.hand[this.hand.length-2][0]) {
+      this.computerWon = true;
+      this.score();
       }
-    else if (war.player1.length === 0 || war.computer.length === 0) {
-      war.gameOver();
+    else if (this.player1.length === 0 || this.computer.length === 0) {
+      this.gameOver();
     }
   },
   tie: function() {
-    war.actionDiv.style.height = "73px";
-    war.actionDiv.innerHTML = "I DECLARE WAR!";
+    this.actionDiv.style.height = "73px";
+    this.actionDiv.innerHTML = "I DECLARE WAR!";
     for (i = 0; i < 3; i++) {
-      war.hand.push(war.player1.pop());
-      war.hand.push(war.computer.pop());
+      this.hand.push(this.player1.pop());
+      this.hand.push(this.computer.pop());
     }
-    war.computerScore.innerHTML = war.computer.length;
-    war.playerScore.innerHTML = war.player1.length;
+    this.computerScore.innerHTML = this.computer.length;
+    this.playerScore.innerHTML = this.player1.length;
   },
   score: function() {
-    if (war.playerWon === true){
-      while (war.hand.length > 0) {
-        war.player1.unshift(war.hand.pop());
+    if (this.playerWon === true){
+      while (this.hand.length > 0) {
+        this.player1.unshift(this.hand.pop());
       }
-      war.playerWon = false;
-      war.playerScore.innerHTML = war.player1.length;
+      this.playerWon = false;
+      this.playerScore.innerHTML = this.player1.length;
     }
-    else if (war.computerWon === true){
-      while (war.hand.length > 0) {
-        war.computer.unshift(war.hand.pop());
+    else if (this.computerWon === true){
+      while (this.hand.length > 0) {
+        this.computer.unshift(this.hand.pop());
       }
-      war.computerWon = false;
-      war.computerScore.innerHTML = war.computer.length;
+      this.computerWon = false;
+      this.computerScore.innerHTML = this.computer.length;
     }
   },
   gameOver: function() {
-    war.actionDiv.innerHTML = "Game over!";
-    war.actionDiv.addEventListener("click", war.gameStart);
+    this.actionDiv.innerHTML = "Game over!";
+    this.actionDiv.addEventListener("click", this.gameStart);
   },
   gameStart: function() {
-    war.actionDiv.innerHTML = "FLIP!";
-    war.build();
-    war.shuffle();
-    war.splitDeck();
+    this.actionDiv.innerHTML = "FLIP!";
+    this.build();
+    this.shuffle();
+    this.splitDeck();
   }
 };
 war.gameStart();
