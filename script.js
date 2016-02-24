@@ -5,8 +5,8 @@ var computerWon = false;
 var actionDiv = document.getElementById("action");
 var playerScore = document.getElementById("player_score");
 var computerScore = document.getElementById("computer_score");
-var playerCard = document.getElementById("playerCard");
-var computerCard = document.getElementById("computerCard");
+var playerCard = document.getElementsByClassName("player");
+var computerCard = document.getElementsByClassName("computer");
 
 var deck = {
   values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
@@ -34,6 +34,13 @@ var deck = {
   splitDeck: function() {
     player1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
     computer = this.cards;
+    for (i = 0; i < 26; i++) {
+      var stack = document.createElement("div");
+      playerCard[i].appendChild(stack);
+      stack.className = "player";
+      stack.style.left = i + "px";
+      stack.style.top = i + "px";
+    }
   },
   deal: function() {
     actionDiv.style.height = "40px";
