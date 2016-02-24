@@ -1,18 +1,18 @@
-var player1 = [];
-var computer = [];
-var playerWon = false;
-var computerWon = false;
-var actionDiv = document.getElementById("action");
-var playerScore = document.getElementById("player_score");
-var computerScore = document.getElementById("computer_score");
-var playerCard = document.getElementById("playerCard");
-var computerCard = document.getElementById("computerCard");
 
-var deck = {
+var war = {
   values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
   suits: ["clubs", "diamonds", "hearts", "spades"],
   cards: [],
   hand: [],
+  player1: [],
+  computer: [],
+  playerWon: false,
+  computerWon: false,
+  actionDiv: document.getElementById("action"),
+  playerScore: document.getElementById("player_score"),
+  computerScore: document.getElementById("computer_score"),
+  playerCard: document.getElementById("playerCard"),
+  computerCard: document.getElementById("computerCard"),
   build: function() {
     for (i = 0; i < this.values.length; i++){
       for (j = 0; j < this.suits.length; j++) {
@@ -32,72 +32,72 @@ var deck = {
     return cards;
   },
   splitDeck: function() {
-    player1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
-    computer = this.cards;
+    war.player1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
+    war.computer = this.cards;
   },
   deal: function() {
-    actionDiv.style.height = "40px";
-    actionDiv.innerHTML = "FLIP!";
-    deck.hand.push(player1.pop());
-    deck.hand.push(computer.pop());
-    playerCard.src="cards/" + deck.hand[deck.hand.length-1][0] + "_of_" + deck.hand[deck.hand.length-1][1] + ".png";
-    computerCard.src="cards/" + deck.hand[deck.hand.length-2][0] + "_of_" + deck.hand[deck.hand.length-2][1] + ".png";
-    computerScore.innerHTML = computer.length;
-    playerScore.innerHTML = player1.length;
-    deck.compare();
+    war.actionDiv.style.height = "40px";
+    war.actionDiv.innerHTML = "FLIP!";
+    war.hand.push(war.player1.pop());
+    war.hand.push(war.computer.pop());
+    war.playerCard.src="cards/" + war.hand[war.hand.length-1][0] + "_of_" + war.hand[war.hand.length-1][1] + ".png";
+    war.computerCard.src="cards/" + war.hand[war.hand.length-2][0] + "_of_" + war.hand[war.hand.length-2][1] + ".png";
+    war.computerScore.innerHTML = war.computer.length;
+    war.playerScore.innerHTML = war.player1.length;
+    war.compare();
   },
   compare: function() {
-    if (deck.hand[deck.hand.length-1][0] == deck.hand[deck.hand.length-2][0]) {
-      deck.tie();
+    if (war.hand[war.hand.length-1][0] == war.hand[war.hand.length-2][0]) {
+      war.tie();
       }
-    else if (deck.hand[deck.hand.length-1][0] > deck.hand[deck.hand.length-2][0]){
-      playerWon = true;
-      deck.score();
+    else if (war.hand[war.hand.length-1][0] > war.hand[war.hand.length-2][0]){
+      war.playerWon = true;
+      war.score();
       }
-    else if (deck.hand[deck.hand.length-1][0] < deck.hand[deck.hand.length-2][0]) {
-      computerWon = true;
-      deck.score();
+    else if (war.hand[war.hand.length-1][0] < war.hand[war.hand.length-2][0]) {
+      war.computerWon = true;
+      war.score();
       }
-    else if (player1.length === 0 || computer.length === 0) {
-      deck.gameOver();
+    else if (war.player1.length === 0 || war.computer.length === 0) {
+      war.gameOver();
     }
   },
   tie: function() {
-    actionDiv.style.height = "73px";
-    actionDiv.innerHTML = "I DECLARE WAR!";
+    war.actionDiv.style.height = "73px";
+    war.actionDiv.innerHTML = "I DECLARE WAR!";
     for (i = 0; i < 3; i++) {
-      deck.hand.push(player1.pop());
-      deck.hand.push(computer.pop());
+      war.hand.push(war.player1.pop());
+      war.hand.push(war.computer.pop());
     }
-    computerScore.innerHTML = computer.length;
-    playerScore.innerHTML = player1.length;
+    war.computerScore.innerHTML = war.computer.length;
+    war.playerScore.innerHTML = war.player1.length;
   },
   score: function() {
-    if (playerWon === true){
-      while (deck.hand.length > 0) {
-        player1.unshift(deck.hand.pop());
+    if (war.playerWon === true){
+      while (war.hand.length > 0) {
+        war.player1.unshift(war.hand.pop());
       }
-      playerWon = false;
-      playerScore.innerHTML = player1.length;
+      war.playerWon = false;
+      war.playerScore.innerHTML = war.player1.length;
     }
-    else if (computerWon === true){
-      while (deck.hand.length > 0) {
-        computer.unshift(deck.hand.pop());
+    else if (war.computerWon === true){
+      while (war.hand.length > 0) {
+        war.computer.unshift(war.hand.pop());
       }
-      computerWon = false;
-      computerScore.innerHTML = computer.length;
+      war.computerWon = false;
+      war.computerScore.innerHTML = war.computer.length;
     }
   },
   gameOver: function() {
-    actionDiv.innerHTML = "Game over!";
-    actionDiv.addEventListener("click", deck.gameStart);
+    war.actionDiv.innerHTML = "Game over!";
+    war.actionDiv.addEventListener("click", war.gameStart);
   },
   gameStart: function() {
-    actionDiv.innerHTML = "FLIP!";
-    deck.build();
-    deck.shuffle();
-    deck.splitDeck();
+    war.actionDiv.innerHTML = "FLIP!";
+    war.build();
+    war.shuffle();
+    war.splitDeck();
   }
 };
-deck.gameStart();
-actionDiv.addEventListener("click", deck.deal);
+war.gameStart();
+war.actionDiv.addEventListener("click", war.deal);
