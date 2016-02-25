@@ -1,10 +1,10 @@
 
-var war = {
+var war3 = {
   values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
   suits: ["clubs", "diamonds", "hearts", "spades"],
   cards: [],
   hand: [],
-  player1: [],
+  player: [],
   computer1: [],
   computer2: [],
   playerWon: false,
@@ -37,64 +37,57 @@ var war = {
     return cards;
   },
   splitDeck: function() {
-    war.player1 = this.cards.splice(0, Math.floor(this.cards.length / 3));
-    war.computer1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
-    war.computer2 = this.cards;
+    war3.player = this.cards.splice(0, Math.floor(this.cards.length / 3));
+    war3.computer1 = this.cards.splice(0, Math.floor(this.cards.length / 2));
+    war3.computer2 = this.cards;
   },
-  // deals three cards and chooses image to display, the first line restores normal hieght in case it had been enlarged by the war.tie method; war.deal is triggered by a click event so I avoided using "this" here
+  // deals three cards and chooses image to display, the first line restores normal hieght in case it had been enlarged by the war3.tie method; war3.deal is triggered by a click event so I avoided using "this" here
   deal: function() {
-    war.actionDiv.style.height = "40px";
-    war.actionDiv.innerHTML = "FLIP!";
-    if (war.player1.length > 0) {
-      war.hand.push(war.player1.pop());
+    war3.actionDiv.style.height = "40px";
+    war3.actionDiv.innerHTML = "FLIP!";
+    war3.hand.push(war3.player.pop());
+    war3.hand.push(war3.computer1.pop());      war3.hand.push(war3.computer2.pop());
+    if ((war3.player.length > 0) && (war3.player[0][0] !== 0)) {
+      war3.playerCard.src="cards/" + war3.hand[war3.hand.length-1][0] + "_of_" + war3.hand[war3.hand.length-1][1] + ".png";
     }
-    if (war.computer1.length > 0) {
-      war.hand.push(war.computer1.pop());
+    else if ((war3.player.length === 0) || (war3.player[0][0] === 0)){
+      war3.player = [[0, "hearts"]];
     }
-    if (war.computer2.length > 0) {
-      war.hand.push(war.computer2.pop());
+    if ((war3.computer1.length > 0) && (war3.computer1[0][0] !== 0)) {
+      war3.computer1Card.src="cards/" + war3.hand[war3.hand.length-2][0] + "_of_" + war3.hand[war3.hand.length-2][1] + ".png";
     }
-    if (war.player1.length > 0) {
-      war.playerCard.src="cards/" + war.hand[war.hand.length-1][0] + "_of_" + war.hand[war.hand.length-1][1] + ".png";
+    else if ((war3.computer1.length === 0) || (war3.computer1[0][0] === 0)) {
+      war3.computer1 = [[0, "hearts"]];
     }
-    else if (war.player1.length === 0){
-      war.playerCard.src="cards/black_joker.png";
+    if ((war3.computer2.length > 0) && (war3.computer2[0][0] !== 0)) {
+    war3.computer2Card.src="cards/" + war3.hand[war3.hand.length-3][0] + "_of_" + war3.hand[war3.hand.length-3][1] + ".png";
     }
-    if (war.computer1.length > 0) {
-      war.computer1Card.src="cards/" + war.hand[war.hand.length-2][0] + "_of_" + war.hand[war.hand.length-2][1] + ".png";
+    else if ((war3.computer2.length === 0) || (war3.computer2[0][0] === 0)){
+      war3.computer2 = [[0, "hearts"]];
     }
-    else if (war.computer1.length === 0) {
-      war.computer1.src="cards/black_joker.png";
-    }
-    if (war.computer2.length > 0) {
-    war.computer2Card.src="cards/" + war.hand[war.hand.length-3][0] + "_of_" + war.hand[war.hand.length-3][1] + ".png";
-    }
-    else if (war.computer2.length === 0){
-      war.computer2.src="cards/black_joker.png";
-    }
-    war.playerScore.innerHTML = war.player1.length;
-    war.computer1Score.innerHTML = war.computer1.length;
-    war.computer2Score.innerHTML = war.computer2.length;
-    war.compare();
+    war3.playerScore.innerHTML = war3.player.length;
+    war3.computer1Score.innerHTML = war3.computer1.length;
+    war3.computer2Score.innerHTML = war3.computer2.length;
+    war3.compare();
   },
-  // compares from the back of war.deck to avoid comparing the same two cards after a tie
+  // compares from the back of war3.deck to avoid comparing the same two cards after a tie
   compare: function() {
     if (this.hand[this.hand.length-1][0] == this.hand[this.hand.length-2][0] == this.hand[this.hand.length-3][0]) {
       this.tie();
       }
-    else if (this.hand[this.hand.length-1][0] > this.hand[this.hand.length-2][0] && this.hand[this.hand.length-1][0] > this.hand[this.hand.length-3][0]){
+    else if ((this.hand[this.hand.length-1][0] > this.hand[this.hand.length-2][0]) && (this.hand[this.hand.length-1][0] > this.hand[this.hand.length-3][0])){
       this.playerWon = true;
       this.score();
       }
-    else if (this.hand[this.hand.length-2][0] > this.hand[this.hand.length-1][0] && this.hand[this.hand.length-2][0] > this.hand[this.hand.length-3][0]) {
+    else if ((this.hand[this.hand.length-2][0] > this.hand[this.hand.length-1][0]) && (this.hand[this.hand.length-2][0] > this.hand[this.hand.length-3][0])) {
       this.computer1Won = true;
       this.score();
       }
-    else if (this.hand[this.hand.length-3][0] > this.hand[this.hand.length-1][0] && this.hand[this.hand.length-3][0] > this.hand[this.hand.length-2][0]) {
-      this.computerWon = true;
+    else if ((this.hand[this.hand.length-3][0] > this.hand[this.hand.length-1][0]) && (this.hand[this.hand.length-3][0] > this.hand[this.hand.length-2][0])) {
+      this.computer2Won = true;
       this.score();
         }
-    else if (this.player1.length === 0 && this.computer1.length === 0 || this.player1.length === 0 && this.computer2.length === 0 || this.computer1.length === 0 && this.computer2.length === 0) {
+    else if (((this.player.length === 0) && (this.computer1.length === 0)) || ((this.player.length === 0) && (this.computer2.length === 0)) || ((this.computer1.length === 0 && this.computer2.length === 0))) {
       this.gameOver();
     }
   },
@@ -102,18 +95,18 @@ var war = {
     this.actionDiv.style.height = "73px";
     this.actionDiv.innerHTML = "I DECLARE WAR!";
     for (i = 0; i < 3; i++) {
-      this.hand.push(this.player1.pop());
+      this.hand.push(this.player.pop());
       this.hand.push(this.computer1.pop());
       this.hand.push(this.computer2.pop());
     }
-    this.playerScore.innerHTML = this.player1.length;
+    this.playerScore.innerHTML = this.player.length;
     this.computer1Score.innerHTML = this.computer1.length;
     this.computer2Score.innerHTML = this.computer2.length;
   },
   score: function() {
     if (this.playerWon === true){
       while (this.hand.length > 0) {
-        this.player1.unshift(this.hand.pop());
+        this.player.unshift(this.hand.pop());
       }
       this.playerWon = false;
       this.playerScore.innerHTML = this.player1.length;
@@ -144,5 +137,5 @@ var war = {
     this.splitDeck();
   }
 };
-war.gameStart();
-war.actionDiv.addEventListener("click", war.deal);
+war3.gameStart();
+war3.actionDiv.addEventListener("click", war3.deal);
