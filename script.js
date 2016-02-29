@@ -6,8 +6,10 @@ var war = {
   hand: [],
   player1: [],
   computer: [],
+  //JGZ - this is really clever! setting up a playerWon and computerWon option
   playerWon: false,
   computerWon: false,
+  // JGZ - I love that you're setting up these selections ahead of time instead of repeating them in the code later on!
   actionDiv: document.getElementById("action"),
   playerScore: document.getElementById("player_score"),
   computerScore: document.getElementById("computer_score"),
@@ -41,6 +43,7 @@ var war = {
     war.actionDiv.innerHTML = "FLIP!";
     war.hand.push(war.player1.pop());
     war.hand.push(war.computer.pop());
+    // JGZ - nice job with these cards!!
     war.playerCard.src="cards/" + war.hand[war.hand.length-1][0] + "_of_" + war.hand[war.hand.length-1][1] + ".png";
     war.computerCard.src="cards/" + war.hand[war.hand.length-2][0] + "_of_" + war.hand[war.hand.length-2][1] + ".png";
     war.computerScore.innerHTML = war.computer.length;
@@ -49,6 +52,7 @@ var war = {
   },
   // compares from the back of war.deck to avoid comparing the same two cards after a tie
   compare: function() {
+    // JGZ - seems like you're repeating things like this.hand, and this.hand.length a lot, would probably be clearned to set those as variables?
     if (this.hand[this.hand.length-1][0] == this.hand[this.hand.length-2][0]) {
       this.tie();
       }
@@ -75,6 +79,7 @@ var war = {
     this.playerScore.innerHTML = this.player1.length;
   },
   score: function() {
+    //JGZ - for clarity-sake, it might be cleaner to use some "self"'s in here too!
     if (this.playerWon === true){
       while (this.hand.length > 0) {
         this.player1.unshift(this.hand.pop());
