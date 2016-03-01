@@ -1,10 +1,8 @@
-<!-- JGZ - One small validator error, check notes below! -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  <link rel="stylesheet" type="text/css" href="threePlay.css"/>
   <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
   <title>War</title>
 </head>
@@ -13,22 +11,25 @@
   <p class="intro">Click FLIP to begin! A tie means WAR: three cards from each hand will be set aside. The next round will be a tiebreaker. The winner collects all ten cards.</p>
   <div id="game_container">
     <div class="cards" id="player">
-      <!-- JGZ - picky, but any ideas why this would give you an error in the validator? -->
       <img id="playerCard" src="cards/backside.png">
       <p>Player</p>
     </div>
-    <div class="cards" id="computer">
-      <!-- JGZ - To answer myself above, don't forget alt tags! -->
-      <img id="computerCard" src="cards/backside.png">
-      <p>Computer</p>
+    <div class="cards" id="computer1">
+      <img id="computer1Card" src="cards/backside.png">
+      <p>Computer1</p>
+    </div>
+    <div class="cards" id="computer2">
+      <img id="computer2Card" src="cards/backside.png">
+      <p>Computer2</p>
     </div>
     <div id="action">FLIP!</div>
   </div>
   <div class="score_container">
     <p>Score</p>
-    <p>Your cards: <span id="player_score">26</span></p>
-    <p>Computer's cards: <span id="computer_score">26</span></p>
+    <p>Your cards: <span id="player_score">17</span></p>
+    <p>Computer1's cards: <span id="computer1_score">17</span></p>
+    <p>Computer2's cards: <span id="computer2_score">17</span></p>
   </div>
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="threePlay.js"></script>
 </body>
 </html>
